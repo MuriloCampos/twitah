@@ -9,15 +9,28 @@ import {
 import profileImg from '../../assets/profile.jpg';
 import { Container, Header, Message, Buttons } from './styles';
 
-const Tweet: React.FC = () => {
+interface TweetDTO {
+  id: string;
+  username: string;
+  message: string;
+  date: string;
+  avatar: string;
+  formattedDate?: string;
+}
+
+interface TweetProps {
+  data: TweetDTO;
+}
+
+const Tweet: React.FC<TweetProps> = ({ data }: TweetProps) => {
   return (
     <Container>
       <Header>
-        <img src={profileImg} alt="Profile" />
-        <strong>Murilo Campos</strong>
-        <span>May 11</span>
+        <img src={data.avatar} alt="Profile" />
+        <strong>{data.username}</strong>
+        <span>{data.formattedDate}</span>
       </Header>
-      <Message>Hello Twitah</Message>
+      <Message>{data.message}</Message>
       <Buttons>
         <button type="button">
           <ChatBubbleOutline />

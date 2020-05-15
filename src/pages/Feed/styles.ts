@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import coverImg from '../../assets/cover.jpeg';
+interface CoverPictureProps {
+  userCover?: string;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -8,13 +10,17 @@ export const Container = styled.div`
   margin: 0 30px;
 `;
 
-export const CoverPicture = styled.div`
+export const CoverPicture = styled.div<CoverPictureProps>`
   display: flex;
   width: 100%;
   height: 200px;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url(${coverImg});
+  ${props =>
+    props.userCover &&
+    css`
+      background-image: url(${props.userCover});
+    `}
 `;
 
 export const Header = styled.div`
@@ -26,22 +32,26 @@ export const Header = styled.div`
 `;
 
 export const Config = styled.div`
-  align-self: flex-start;
+  display: flex;
+  padding-bottom: 20px;
 
   span {
     font-weight: bold;
     color: #3d3c3a;
     font-size: 25px;
-    margin-right: 20px;
+    margin-right: 10px;
   }
 
-  button {
-    background: transparent;
-    border: none;
+  a {
     svg {
-      width: 20px;
-      height: 20px;
+      width: 30px;
+      height: 30px;
       color: gray;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 `;
@@ -54,13 +64,16 @@ export const TweetFeed = styled.div`
   margin: 0 auto;
   padding: 40px 20px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 18px 0px rgba(0, 162, 238, 0.75);
+  margin-bottom: 40px;
 `;
 
 export const ProfilePicture = styled.div`
   img {
     width: 150px;
     height: 150px;
+    object-fit: cover;
     border-radius: 75px;
     margin-bottom: 100px;
   }
@@ -68,4 +81,27 @@ export const ProfilePicture = styled.div`
 
 export const Tweets = styled.div`
   margin-top: 50px;
+  ul {
+    list-style: none;
+  }
+`;
+
+export const TweetBoxDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  button {
+    background: #00a2ee;
+    border-radius: 30px;
+    width: 100px;
+    border: none;
+    margin-left: 8px;
+    font-weight: bold;
+    color: #fff;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;

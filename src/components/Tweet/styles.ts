@@ -15,6 +15,7 @@ export const Header = styled.div`
   img {
     width: 50px;
     height: 50px;
+    object-fit: cover;
     border-radius: 25px;
     margin-right: 15px;
   }
@@ -46,6 +47,8 @@ export const Buttons = styled.div`
     color: gray;
 
     svg {
+      transition: color 0.2s;
+
       &:hover {
         color: blue;
       }
